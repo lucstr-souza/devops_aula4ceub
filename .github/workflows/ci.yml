@@ -19,15 +19,16 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Instalar dependências do projeto
-      run: npm install
+   - name: Instalar dependências do projeto
+  run: npm install
 
-    # ETAPA 1: ANÁLISE ESTÁTICA DE CÓDIGO (LINTER)
-    - name: Executar análise estática de código (Linter)
-      run: |
-        chmod +x -R ./node_modules/.bin/eslint
-        npm run lint
+- name: Corrigir permissões dos binários instalados
+  run: chmod -R +x ./node_modules/.bin
 
-    # ETAPA 2: TESTES AUTOMATIZADOS
-    - name: Executar testes automatizados
-      run: npm test
+# ETAPA 1: ANÁLISE ESTÁTICA DE CÓDIGO (LINTER)
+- name: Executar análise estática de código (Linter)
+  run: npm run lint
+
+# ETAPA 2: TESTES AUTOMATIZADOS
+- name: Executar testes automatizados
+  run: npm test
